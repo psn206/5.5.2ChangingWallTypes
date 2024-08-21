@@ -1,0 +1,18 @@
+﻿<Window x:Class="ChangingWallTypes.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChangingWallTypes"
+             mc:Ignorable="d" 
+             Height="200" d:Width="200">
+    <StackPanel>
+        <Label Content="Выбор стен" Margin="5"/>
+        <ComboBox ItemsSource="{Binding WallsSystem}"
+                  SelectedValue="{Binding SelectedWallsSystem}"
+                  DisplayMemberPath="Name"
+                  Margin="5"/>
+        <Button Content="Приминить" Command="{Binding SaveCommand}" Margin="5"/>
+
+    </StackPanel>
+</Window>

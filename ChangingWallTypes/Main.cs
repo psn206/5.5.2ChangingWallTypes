@@ -15,9 +15,8 @@ namespace ChangingWallTypes
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             var window = new MainView(commandData);
-            window.Show();
-            return Result.Succeeded;
-           
+            window.ShowDialog();
+            return Result.Succeeded;           
         }
     }
 }

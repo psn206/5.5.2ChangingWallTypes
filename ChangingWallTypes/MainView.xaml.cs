@@ -26,7 +26,6 @@ namespace ChangingWallTypes
             InitializeComponent();
             MainViewViewModel vm = new MainViewViewModel(commandData);
             vm.CloseRecuest += (s, e) => this.Close();
-
             DataContext = vm;
         }
     }

@@ -15,13 +15,13 @@ namespace ChangingWallTypes
         UIDocument uiDoc;
         Document doc;
 
-        public UIApplication UiApp { get => uiApp;  }
+        public UIApplication UiApp { get => uiApp; }
         public UIDocument UiDoc { get => uiDoc; }
         public Document Doc { get => doc; }
 
         public MethodRevitApp(ExternalCommandData commandData)
         {
-           uiApp = commandData.Application;
+            uiApp = commandData.Application;
             uiDoc = UiApp.ActiveUIDocument;
             doc = UiDoc.Document;
         }
@@ -40,6 +40,24 @@ namespace ChangingWallTypes
                .Cast<WallType>()
                .ToList();
             return wallTypes;
+        }
+        public void SetTypeWall(List<WallType> WallsSystem, List<Element> PickedWalls, WallType SelectedWallsSystem)
+        {
+            if (WallsSystem.Count == 0 || SelectedWallsSystem == null) { return; }
+
+            using (var ts = new Transaction(Doc, "Set Type"))
+            {
+                ts.Start();
+                foreach (var PickedWall in PickedWalls)
+                {
+                    if (PickedWall is Wall)
+                    {
+                        var oWall = PickedWall as Wall;
+                        oWall.WallType = SelectedWallsSystem;
+                    }
+                }
+                ts.Commit();
+            }
         }
     }
 }
